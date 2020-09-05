@@ -1,5 +1,5 @@
 {
-  "name": "auth-data-server",
+  "name": "auth-data-nodeserver",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
