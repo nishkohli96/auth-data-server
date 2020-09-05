@@ -9,14 +9,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "prettier --write"
     }
-  },
-  "lint-staged": {
-    "*. js ": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   },
   "keywords": [],
   "author": "",
