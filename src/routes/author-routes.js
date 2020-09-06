@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const mongoFunctions = require('./src/mongo/mongo');
+const mongoFunctions = require('../mongo/author-crud');
 
 let result;
 
