@@ -16,15 +16,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^7.8.1",
     "express": "^4.17.1",
-    "gulp": "^4.0.2",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.3.0",
-    "nodemon": "^2.0.4",
-    "prettier": "^2.1.1"
+    "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "mongodb-client": "^0.0.1"
+    "cors": "^2.8.5",
+    "mongodb": "^3.6.1"
   }
 }

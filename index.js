@@ -1,4 +1,4 @@
-import app from './express-config';
+const app = require('./express-config');
 
 const port = 5000;
 
