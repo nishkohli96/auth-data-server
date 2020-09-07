@@ -1,8 +1,8 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const DBconstans = require('../constants');
+const DBconstants = require('../constants');
 
-const url = `mongodb+srv://${DBconstans.username}:${DBconstans.pswd}@${DBconstans.server}/${DBconstans.dbName}?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${DBconstants.username}:${DBconstants.pswd}@${DBconstants.server}/${DBconstants.dbName}?retryWrites=true&w=majority`;
 
 const client = new MongoClient(url, { useNewUrlParser: true,useUnifiedTopology: true });
 
@@ -11,8 +11,8 @@ async function connectToDB() {
     return new Promise(function(resolve, reject) {
         MongoClient.connect(url, { useNewUrlParser: true,useUnifiedTopology: true }, 
         async function(err, client) {
-            const db = client.db(DBconstans.dbName);
-            const res = await db.collection(DBconstans.collectionName).find().toArray();
+            const db = client.db(DBconstants.dbName);
+            const res = await db.collection(DBconstants.collectionName).find().toArray();
             client.close();
             resolve(res);
             reject(err);
@@ -25,7 +25,7 @@ async function addAuthor(author) {
     return new Promise(function(resolve, reject) {
         client.connect()
         .then( async() => {
-            const res = await client.db(DBconstans.dbName).collection(DBconstans.collectionName);
+            const res = await client.db(DBconstants.dbName).collection(DBconstants.collectionName);
             const outcome = await res.insertOne(author);
             /* Refer upsert here
                 https://docs.mongodb.com/manual/reference/method/Bulk.find.upsert/
@@ -41,7 +41,7 @@ async function getAuthor(srchText) {
     return new Promise(function(resolve, reject) {
         client.connect()
         .then( async() => {
-            const res = await client.db(DBconstans.dbName).collection(DBconstans.collectionName);
+            const res = await client.db(DBconstants.dbName).collection(DBconstants.collectionName);
             const outcome = await res.findOne({ name: srchText });
             client.close();
             resolve(outcome);
@@ -53,7 +53,7 @@ async function editAuthor(author) {
     return new Promise(function(resolve, reject) {
         client.connect()
         .then( async() => {
-            const res = await client.db(DBconstans.dbName).collection(DBconstans.collectionName);
+            const res = await client.db(DBconstants.dbName).collection(DBconstants.collectionName);
             const outcome = await res.updateOne({ name: author.name },
                 [
                   { $set : { books: author.books , bio: author.bio } } 
@@ -69,7 +69,7 @@ async function deleteAuthor(name) {
     return new Promise(function(resolve, reject) {
         client.connect()
         .then( async() => {
-            const res = await client.db(DBconstans.dbName).collection(DBconstans.collectionName);
+            const res = await client.db(DBconstants.dbName).collection(DBconstants.collectionName);
             const outcome = await res.deleteOne({ name: name });
             client.close();
             resolve(outcome);
