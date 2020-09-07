@@ -1,5 +1,6 @@
 const express = require('express');
-const fbRouter = require('../passportjs/facebook');
+const facebookRouter = require('../passportjs/facebook');
+const githubRouter = require('../passportjs/github');
 const googleRouter = require('../passportjs/google');
 
 const router = express.Router();
@@ -14,7 +15,8 @@ router.get('/fail', function(req,res) {
     res.end();
 })
 
-router.use('', fbRouter);
+router.use('', facebookRouter);
+router.use('', githubRouter);
 router.use('', googleRouter);
 
 module.exports = router;
