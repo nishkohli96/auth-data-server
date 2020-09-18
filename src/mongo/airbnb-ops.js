@@ -6,13 +6,16 @@ const url = `mongodb+srv://${DBconstants.username}:${DBconstants.pswd}@${DBconst
 
 const client = new MongoClient(url, { useNewUrlParser: true,useUnifiedTopology: true });
 
-/* Retrieve the list of all authors */
-async function connectToDB() {
+/* The dataset is very large, so don't try to get all data, else server crashes */
+
+/* Get 10 records starting from the 4th document */
+async function findLimitSkip() {
     return new Promise(function(resolve, reject) {
         MongoClient.connect(url, { useNewUrlParser: true,useUnifiedTopology: true }, 
         async function(err, client) {
-            const db = client.db(DBconstants.dbName);
-            const res = await db.collection(DBconstants.collectionName).find().toArray();
+            const db = client.db(DBconstants.airbnb_DB);
+            const res = await db.collection(DBconstants.airbnb_collection).find()
+            .skip(3).limit(10).toArray();
             client.close();
             resolve(res);
             reject(err);
@@ -21,30 +24,28 @@ async function connectToDB() {
 }
 
 /* Add an author to MongoDB */
-async function addAuthor(author) {
+async function andOrop() {
     return new Promise(function(resolve, reject) {
         client.connect()
         .then( async() => {
-            const res = await client.db(DBconstants.dbName).collection(DBconstants.collectionName);
-            const outcome = await res.insertOne(author);
-            /* Refer upsert here
-                https://docs.mongodb.com/manual/reference/method/Bulk.find.upsert/
-            */
+            const res = await client.db(DBconstants.airbnb_DB).collection(DBconstants.airbnb_collection)
+                .find({ $or: [{ minimum_nights: { $gte: 2}},
+                    { price: { $lt: 200 } } ]}).limit(3).toArray();
             client.close();
-            resolve(outcome);
+            resolve(res);
         });
     });
 }
 
-/* Retrieve an author details */
-async function getAuthor(srchText) {
+/* Compare two fields with each other; ie find records where security_deposit value > price */
+async function fieldExpr() {
     return new Promise(function(resolve, reject) {
         client.connect()
         .then( async() => {
-            const res = await client.db(DBconstants.dbName).collection(DBconstants.collectionName);
-            const outcome = await res.findOne({ name: srchText });
+            const res = await client.db(DBconstants.airbnb_DB).collection(DBconstants.airbnb_collection)
+                .find({ $expr: { $gt: [ "$security_deposit" , "$price" ] } }).limit(3).toArray();
             client.close();
-            resolve(outcome);
+            resolve(res);
         });
     });
 }
@@ -77,4 +78,4 @@ async function deleteAuthor(name) {
     });
 }
 
-module.exports = { connectToDB, addAuthor, getAuthor, editAuthor, deleteAuthor }
+module.exports = { findLimitSkip, andOrop, fieldExpr, editAuthor, deleteAuthor }
