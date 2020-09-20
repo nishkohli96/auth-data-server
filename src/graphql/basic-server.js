@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server-express');
+const PersonModel = require('../mongo/model/Person');
 
 const typeDefs = gql`
   type Book {
@@ -6,8 +7,17 @@ const typeDefs = gql`
     author: String
   }
 
+  type Person {
+    name: String
+    age: Int
+  }
+
   type Query {
     books: [Book]
+  }
+
+  type Mutation {
+    addPerson(name: String!,age:Int!): Person
   }
 `;
 
@@ -26,6 +36,15 @@ const resolvers = {
     Query: {
       books: () => books,
     },
+    Mutation: {
+      addPerson: (parent,args) => {
+        const person = new PersonModel({
+          name: args.name,
+          age: args.age
+        });
+        return person.save(); 
+      }
+    }
 };
 
 const gqlServer = new ApolloServer({ 
