@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Date
   type Book {
     title: String
     author: String
@@ -13,10 +14,34 @@ const typeDefs = gql`
 
   type Query {
     books: [Book]
+    persons: [Person]
+    restaurants: [Restaurant]
   }
 
   type Mutation {
     addPerson(name: String!,age:Int!): Person
+  }
+
+  type Grades {
+    date: Date
+    grade: String
+    score:Int
+  }
+
+  type Address {
+    building: String
+    coord: [Float]
+    street: String
+    zipcode: String
+  }
+
+  type Restaurant {
+    address: Address
+    borough: String
+    cuisine:String
+    grades: [Grades]
+    name: String
+    restaurant_id: String
   }
 `;
 
