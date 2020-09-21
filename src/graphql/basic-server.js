@@ -1,25 +1,6 @@
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./schema/schema');
 const PersonModel = require('../mongo/model/Person');
-
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
-
-  type Person {
-    name: String
-    age: Int
-  }
-
-  type Query {
-    books: [Book]
-  }
-
-  type Mutation {
-    addPerson(name: String!,age:Int!): Person
-  }
-`;
 
 const books = [
     {
