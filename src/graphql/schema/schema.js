@@ -20,6 +20,7 @@ const typeDefs = gql`
 
   type Mutation {
     addPerson(name: String!,age:Int!): Person
+    changeRestaurantData(restaurant_id: String!, name: String!,street: String): Restaurant
   }
 
   type Grades {
