@@ -1,0 +1,29 @@
+{
+	"name": "@ads/fastify",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Nishant Kohli",
+	"license": "ISC",
+	"dependencies": {
+		"@ads/libs": "^1.0.0",
+		"apollo-server-fastify": "^2.19.1",
+		"fastify": "^2.10.0",
+		"fastify-cors": "^5.1.0",
+		"fastify-mongodb": "^2.0.1",
+		"fastify-plugin": "^3.0.0",
+		"make-promises-safe": "^5.1.0",
+		"middie": "^5.2.0",
+		"module-alias": "^2.2.2",
+		"mongoose": "^5.10.9",
+		"pino-pretty": "^4.3.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.4"
+	}
+}

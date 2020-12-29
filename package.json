@@ -7,17 +7,20 @@
 		"packages/*"
     ],
     "_moduleAliases": {
-        "_nodesrc": "./packages/node-server/src",
-        "_models": "./packages/node-server/src/mongo/model",
-        "_mongo": "./packages/node-server/src/mongo",
-        "_mongoops": "./packages/node-server/src/mongo/ops",
-        "_passport": "./packages/node-server/src/passportjs",
-        "_routes": "./packages/node-server/src/routes",
-        "_graphql": "./packages/node-server/src/graphql",
-        "_gqlschema": "./packages/node-server/src/graphql/schema"
+        "_pkgroot": "./packages",
+        "_express_src": "./packages/express-server/src",
+        "_routes": "./packages/express-server/src/routes",
+        "_fastify_src": "./packages/fastify-server/src",
+        "_graphql": "./packages/libs/graphql",
+        "_gqlschema": "./packages/libs/graphql/schema",
+        "_mongo": "./packages/libs/mongo",
+        "_models": "./packages/libs/mongo/model",
+        "_mongoops": "./packages/libs/mongo/ops",
+        "_passport": "./packages/libs/passportjs"
     },
 	"scripts": {
-		"node-server": "cd packages\\node-server && yarn start"
+        "express-server": "cd packages\\express-server && yarn start",
+        "fastify-server": "cd packages\\fastify-server && yarn start"
     },
     "devDependencies": {
         "husky": "^4.3.6",

@@ -8,7 +8,7 @@ const {
     dbName,
     usersCollection,
     userSchema,
-} = require('../constants');
+} = require('_pkgroot/constants');
 
 const url = `mongodb+srv://${username}:${pswd}@${server}/${dbName}?retryWrites=true&w=majority`;
 const Schema = mongoose.Schema;

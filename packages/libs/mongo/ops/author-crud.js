@@ -1,6 +1,6 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
-const DBconstants = require('../../constants');
+const DBconstants = require('_pkgroot/constants');
 
 const url = `mongodb+srv://${DBconstants.username}:${DBconstants.pswd}@${DBconstants.server}?retryWrites=true&w=majority`;
 
@@ -9,21 +9,17 @@ const client = new MongoClient(url, {
     useUnifiedTopology: true,
 });
 
-/* The dataset is very large, so don't try to get all data, else server crashes */
-
-/* Get 10 records starting from the 4th document */
-async function findLimitSkip() {
+/* Retrieve the list of all authors */
+async function connectToDB() {
     return new Promise(function (resolve, reject) {
         MongoClient.connect(
             url,
             { useNewUrlParser: true, useUnifiedTopology: true },
             async function (err, client) {
-                const db = client.db(DBconstants.airbnb_DB);
+                const db = client.db(DBconstants.dbName);
                 const res = await db
-                    .collection(DBconstants.airbnb_collection)
+                    .collection(DBconstants.collectionName)
                     .find()
-                    .skip(3)
-                    .limit(10)
                     .toArray();
                 client.close();
                 resolve(res);
@@ -34,38 +30,32 @@ async function findLimitSkip() {
 }
 
 /* Add an author to MongoDB */
-async function andOrop() {
+async function addAuthor(author) {
     return new Promise(function (resolve, reject) {
         client.connect().then(async () => {
             const res = await client
-                .db(DBconstants.airbnb_DB)
-                .collection(DBconstants.airbnb_collection)
-                .find({
-                    $or: [
-                        { minimum_nights: { $gte: 2 } },
-                        { price: { $lt: 200 } },
-                    ],
-                })
-                .limit(3)
-                .toArray();
+                .db(DBconstants.dbName)
+                .collection(DBconstants.collectionName);
+            const outcome = await res.insertOne(author);
+            /* Refer upsert here
+                https://docs.mongodb.com/manual/reference/method/Bulk.find.upsert/
+            */
             client.close();
-            resolve(res);
+            resolve(outcome);
         });
     });
 }
 
-/* Compare two fields with each other; ie find records where security_deposit value > price */
-async function fieldExpr() {
+/* Retrieve an author details */
+async function getAuthor(srchText) {
     return new Promise(function (resolve, reject) {
         client.connect().then(async () => {
             const res = await client
-                .db(DBconstants.airbnb_DB)
-                .collection(DBconstants.airbnb_collection)
-                .find({ $expr: { $gt: ['$security_deposit', '$price'] } })
-                .limit(3)
-                .toArray();
+                .db(DBconstants.dbName)
+                .collection(DBconstants.collectionName);
+            const outcome = await res.findOne({ name: srchText });
             client.close();
-            resolve(res);
+            resolve(outcome);
         });
     });
 }
@@ -100,9 +90,9 @@ async function deleteAuthor(name) {
 }
 
 module.exports = {
-    findLimitSkip,
-    andOrop,
-    fieldExpr,
+    connectToDB,
+    addAuthor,
+    getAuthor,
     editAuthor,
     deleteAuthor,
 };

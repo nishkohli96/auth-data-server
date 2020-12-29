@@ -1,5 +1,5 @@
 /* Server Settings */
-const port = 5000;
+const port = 4000;
 
 /* MongoDB Constants */
 const server = 'cluster0.tlouv.mongodb.net';

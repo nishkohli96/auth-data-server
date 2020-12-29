@@ -6,7 +6,7 @@ const {
     github_clientID,
     github_clientSecret,
     github_callbackURL,
-} = require('_nodesrc/constants');
+} = require('_pkgroot/constants');
 const { connectToDB } = require('_mongo/mongoose');
 const router = express.Router();
 

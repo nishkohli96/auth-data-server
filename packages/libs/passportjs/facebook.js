@@ -7,7 +7,7 @@ const {
     fb_clientSecret,
     fb_callbackURL,
     fb_profileFields,
-} = require('_nodesrc/constants');
+} = require('_pkgroot/constants');
 const router = express.Router();
 
 passport.use(

@@ -7,7 +7,7 @@ const {
     google_clientSecret,
     google_callbackURL,
     google_scope,
-} = require('_nodesrc/constants');
+} = require('_pkgroot/constants');
 const router = express.Router();
 
 passport.use(

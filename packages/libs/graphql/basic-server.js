@@ -7,7 +7,7 @@ const {
     server,
     dbName,
     restaurants_DB,
-} = require('../constants');
+} = require('_pkgroot/constants');
 const typeDefs = require('./schema/schema');
 const PersonModel = require('_models/Person');
 const rest_url = `mongodb+srv://${username}:${pswd}@${server}/${restaurants_DB}?retryWrites=true&w=majority`;
