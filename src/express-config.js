@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 
-const airbnb_routes = require('./routes/airbnb-routes');
-const author_routes = require('./routes/author-routes');
-const passport_routes = require('./routes/passport-routes');
+const airbnb_routes = require('_routes/airbnb-routes');
+const author_routes = require('_routes/author-routes');
+const passport_routes = require('_routes/passport-routes');
 
 const gqlServer = require('./graphql/basic-server');
 const app = express();
@@ -23,4 +23,3 @@ app.use('/auth', passport_routes);
 gqlServer.applyMiddleware({ app });
 
 module.exports = app;
-
