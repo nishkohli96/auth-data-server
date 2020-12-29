@@ -1,6 +1,6 @@
 require('module-alias/register');
-const app = require('./src/express-config');
-const { port } = require('./src/constants');
+const app = require('_nodesrc/express-config');
+const { port } = require('_nodesrc/constants');
 
 app.listen(port, () => {
     console.log(`Server started at port : ${port}`);
