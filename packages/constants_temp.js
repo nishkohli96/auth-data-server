@@ -1,16 +1,19 @@
+/*  Rename this file as constants.js, supply appropriate values from your side,
+    and you're good to go. */
+
 /* Server Settings */
 const port = 5000;
 
 /* MongoDB Constants */
-const server = 'cluster0.tlouv.mongodb.net';
-const username = 'nish1896';
-const pswd = 'dragon123Nish';
-const dbName = 'MyDB';
-const collectionName = 'authors';
-const usersCollection = 'db_user';
-const airbnb_DB = 'sample_airbnb';
-const airbnb_collection = 'listingsAndReviews';
-const restaurants_DB = 'sample_restaurants';
+const server = '';
+const username = '';
+const pswd = '';
+const dbName = '';
+const collectionName = '';
+const usersCollection = '';
+const airbnb_DB = '';
+const airbnb_collection = '';
+const restaurants_DB = '';
 
 /* For validations, refer here -
     https://mongoosejs.com/docs/validation.html
@@ -23,20 +26,19 @@ const userSchema = {
 };
 
 /* Passport-Facebook */
-const fb_clientID = '2404026219845298';
-const fb_clientSecret = 'ba19c0e51e424bf6e6000e394eb08c3b';
+const fb_clientID = '';
+const fb_clientSecret = '';
 const fb_callbackURL = `http://localhost:${port}/auth/facebook/callback`;
 const fb_profileFields = ['id', 'displayName', 'photos', 'email'];
 
 /* Passport-Github */
-const github_clientID = '526268fe03820d83a34e';
-const github_clientSecret = '1f8c305248de643b3645bc633632bfc568927e32';
+const github_clientID = '';
+const github_clientSecret = '';
 const github_callbackURL = `http://localhost:${port}/auth/github/callback`;
 
 /* Passport-Google */
-const google_clientID =
-    '345766432797-emvv88t6hnf8cgn00sdgoc0u96ds6a2d.apps.googleusercontent.com';
-const google_clientSecret = 'HV5NEJQnRD7O8_JZt22S3oBk';
+const google_clientID = '';
+const google_clientSecret = '';
 const google_callbackURL = `http://localhost:${port}/auth/google/callback`;
 const google_scope = ['https://www.googleapis.com/auth/plus.login'];
 

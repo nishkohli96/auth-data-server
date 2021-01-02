@@ -1,9 +1,6 @@
 require('module-alias/register');
 const Fastify = require('fastify');
 const { port } = require('_pkgroot/constants');
-const mongoose = require('mongoose');
-
-// const dbUrl = `mongodb+srv://${process.env.CLUSTER_UNAME}:${process.env.CLUSTER_PSWD}@${process.env.CLUSTER_URL}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 async function build() {
     const fastify = Fastify({
@@ -18,10 +15,15 @@ async function build() {
     await fastify.register(require('middie'));
     fastify.register(require('fastify-cors'), {});
 
-    // mongoose
-    // 	.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-    // 	.then(() => console.log('Connected to MongoDB Cloud...'));
-    // fastify.register(gqlServer.createHandler());
+    fastify.register(require('./src/routes/airbnb-routes'), {
+        prefix: '/airbnb',
+    });
+    fastify.register(require('./src/routes/author-routes'), {
+        prefix: '/author',
+    });
+    fastify.register(require('./src/routes/passport-routes'), {
+        prefix: '/auth',
+    });
 
     return fastify;
 }

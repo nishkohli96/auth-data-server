@@ -22,16 +22,4 @@ router.get('/expr', async function (req, res) {
     res.end();
 });
 
-router.put('/editauthor', async function (req, res) {
-    result = await mongoFunctions.editAuthor(req.body);
-    res.send(result.modifiedCount >= 1 ? 'Record Updated' : 'Update Failed');
-    res.end();
-});
-
-router.delete('/deleteauthor', async function (req, res) {
-    result = await mongoFunctions.deleteAuthor(req.body.name);
-    res.send(result.deletedCount >= 1 ? 'Record Deleted' : 'Delete Failed');
-    res.end();
-});
-
 module.exports = router;

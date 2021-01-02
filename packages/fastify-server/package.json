@@ -20,7 +20,6 @@
 		"make-promises-safe": "^5.1.0",
 		"middie": "^5.2.0",
 		"module-alias": "^2.2.2",
-		"mongoose": "^5.10.9",
 		"pino-pretty": "^4.3.0"
 	},
 	"devDependencies": {

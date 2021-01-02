@@ -1,6 +1,6 @@
-# auth-data-nodeserver
+# auth-data-server
 
-Express(Port 5000) and Fastify Server(Port 4000) with the following functionalities : 
+Run either an Express or a Fastify Server on Port 5000 with the following functionalities : 
 
 - CRUD operations on data fetched from [MongoDB](https://www.mongodb.com/)
 - SSO using [PassportJS](http://www.passportjs.org/)
