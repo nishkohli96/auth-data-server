@@ -7,7 +7,7 @@ const airbnb_routes = require('_routes/airbnb-routes');
 const author_routes = require('_routes/author-routes');
 const passport_routes = require('_routes/passport-routes');
 
-const gqlServer = require('_graphql/basic-server');
+const gqlServer = require('_graphql/gql-express');
 const app = express();
 
 app.use(bodyParser.json());

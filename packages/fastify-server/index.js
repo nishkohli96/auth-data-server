@@ -1,6 +1,7 @@
 require('module-alias/register');
 const Fastify = require('fastify');
 const { port } = require('_pkgroot/constants');
+const gqlFastify = require('_graphql/gql-fastify');
 
 async function build() {
     const fastify = Fastify({
@@ -14,6 +15,8 @@ async function build() {
 
     await fastify.register(require('middie'));
     fastify.register(require('fastify-cors'), {});
+
+    fastify.register(gqlFastify.createHandler());
 
     fastify.register(require('./src/routes/airbnb-routes'), {
         prefix: '/airbnb',
