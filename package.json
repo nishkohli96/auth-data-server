@@ -16,7 +16,7 @@
         "_mongo": "./packages/libs/mongo",
         "_models": "./packages/libs/mongo/model",
         "_mongoops": "./packages/libs/mongo/ops",
-        "_passport": "./packages/libs/passportjs"
+        "_passport": "./packages/express-server/src/passportjs"
     },
 	"scripts": {
         "express-server": "cd packages\\express-server && yarn start",
