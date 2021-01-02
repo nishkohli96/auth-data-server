@@ -1,8 +1,6 @@
 require('module-alias/register');
 const Fastify = require('fastify');
-const {
-    port,
-} = require('../express-server/src/passportjs/node_modules/_pkgroot/constants');
+const { port } = require('_pkgroot/constants');
 
 async function build() {
     const fastify = Fastify({
