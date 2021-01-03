@@ -5,7 +5,6 @@ async function routes(fastify) {
     fastify.get('/authors', async (request, reply) => {
         result = await mongoFunctions.connectToDB();
         reply.code(200).send(result);
-        reply.end();
     });
 
     fastify.get('/addauthor', async (request, reply) => {
@@ -13,13 +12,11 @@ async function routes(fastify) {
         reply.send(
             result.insertedCount >= 1 ? 'Record Inserted' : 'Insertion Failed'
         );
-        reply.end();
     });
 
     fastify.get('/getauthor', async (request, reply) => {
         result = await mongoFunctions.getAuthor(request.body.srchText);
         reply.code(200).send(result);
-        reply.end();
     });
 
     fastify.get('/editauthor', async (request, reply) => {
@@ -27,7 +24,6 @@ async function routes(fastify) {
         reply.send(
             result.modifiedCount >= 1 ? 'Record Updated' : 'Update Failed'
         );
-        reply.end();
     });
 
     fastify.get('/deleteauthor', async (request, reply) => {
@@ -35,7 +31,6 @@ async function routes(fastify) {
         reply.send(
             result.deletedCount >= 1 ? 'Record Deleted' : 'Delete Failed'
         );
-        reply.end();
     });
 }
 

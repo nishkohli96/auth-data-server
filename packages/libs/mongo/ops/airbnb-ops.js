@@ -99,10 +99,34 @@ async function deleteAuthor(name) {
     });
 }
 
+/*  https://softwareontheroad.com/pagination-in-nodejs-mongo/ */
+async function paginateResults(page, limit) {
+    const skip = (page - 1) * limit;
+    return new Promise(function (resolve, reject) {
+        MongoClient.connect(
+            url,
+            { useNewUrlParser: true, useUnifiedTopology: true },
+            async function (err, client) {
+                const db = client.db(DBconstants.airbnb_DB);
+                const res = await db
+                    .collection(DBconstants.airbnb_collection)
+                    .find()
+                    .skip(skip) // always skip before limit
+                    .limit(+limit) // convert to integer
+                    .toArray();
+                client.close();
+                resolve(res);
+                reject(err);
+            }
+        );
+    });
+}
+
 module.exports = {
     findLimitSkip,
     andOrop,
     fieldExpr,
     editAuthor,
     deleteAuthor,
+    paginateResults,
 };
